@@ -1,11 +1,9 @@
-## importing data
+## importing data from desktop
 daily_activity   <- read.csv("C:/Users/Vamshi/OneDrive/Desktop/2 casestudy/dailyActivity_merged.csv")
 hour_calories    <- read.csv("C:/Users/Vamshi/OneDrive/Desktop/2 casestudy/hourlyCalories_merged.csv")
 hour_steps       <- read.csv("C:/Users/Vamshi/OneDrive/Desktop/2 casestudy/hourlySteps_merged.csv")
 daily_sleep      <- read.csv("C:/Users/Vamshi/OneDrive/Desktop/2 casestudy/sleepDay_merged.csv")
 second_heartrate <- read.csv("C:/Users/Vamshi/OneDrive/Desktop/2 casestudy/heartrate_seconds_merged.csv")
-
-
 
 
 
@@ -22,8 +20,9 @@ sum(duplicated(daily_sleep))
 sum(duplicated(hour_steps))
 sum(duplicated(hour_calories))
 sum(duplicated(second_heartrate))
+## found 3 duplicates in daily_sleep
 
-## Removing duplicates
+## Removing duplicates from daily_sleep
 daily_sleep <- daily_sleep %>%
   distinct() %>%
   drop_na()
@@ -32,8 +31,8 @@ sum(duplicated(daily_sleep))
 
 
 
-
-## changing data types
+## the data type of date while importing became char by default
+## changing data types from char to date
 daily_activity <- daily_activity %>%
   rename(date = ActivityDate) %>%
      mutate(date = as_date(date, format = "%m/%d/%Y"))
